@@ -14,7 +14,110 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      expenses: {
+        Row: {
+          amount: number
+          category: string
+          created_at: string
+          date: string
+          description: string | null
+          id: number
+          updated_at: string
+        }
+        Insert: {
+          amount?: number
+          category: string
+          created_at?: string
+          date?: string
+          description?: string | null
+          id?: number
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          category?: string
+          created_at?: string
+          date?: string
+          description?: string | null
+          id?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      income: {
+        Row: {
+          actual_cash_received: number
+          cash_amount: number
+          created_at: string
+          credit_amount: number
+          date: string
+          id: number
+          other_amount: number
+          total_income: number
+          updated_at: string
+        }
+        Insert: {
+          actual_cash_received?: number
+          cash_amount?: number
+          created_at?: string
+          credit_amount?: number
+          date?: string
+          id?: number
+          other_amount?: number
+          total_income?: number
+          updated_at?: string
+        }
+        Update: {
+          actual_cash_received?: number
+          cash_amount?: number
+          created_at?: string
+          credit_amount?: number
+          date?: string
+          id?: number
+          other_amount?: number
+          total_income?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      purchases: {
+        Row: {
+          created_at: string
+          expense_id: number
+          id: number
+          item_name: string
+          price_per_unit: number
+          quantity: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          expense_id: number
+          id?: number
+          item_name: string
+          price_per_unit?: number
+          quantity?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          expense_id?: number
+          id?: number
+          item_name?: string
+          price_per_unit?: number
+          quantity?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchases_expense_id_fkey"
+            columns: ["expense_id"]
+            isOneToOne: false
+            referencedRelation: "expenses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
